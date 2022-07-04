@@ -11,6 +11,6 @@ class IndexController extends Controller
     {
         $participants = Participant::orderByDesc('points')->where('is_active', true)->get();
 
-        return view('tablePage', compact('participants'));
+        return view('table', compact('participants'));
     }
 }
