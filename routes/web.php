@@ -13,10 +13,10 @@ Route::get('/volante/{id}', [IndexController::class , 'getWheelPage'])->name('in
 
 Route::get('/login', [AdminController::class , 'getLoginPage'])->name('admin.login');
 Route::post('/login', [AdminController::class , 'postLogin'])->name('admin.login.post');
-Route::get('/dashboard', [AdminController::class , 'getDashboardPage'])->middleware('admin.login')->name('admin.dashboard');
+Route::get('/dashboard', [AdminController::class , 'getDashboardPage'])->middleware('login')->name('admin.dashboard');
 Route::get('/logout', [AdminController::class , 'getLogoutUser'])->name('admin.logout');
 
-Route::put('/sweepstakes', [SweepstakeController::class , 'putLatestSweepstake'])->middleware('admin.login')->name('sweepstakes.update');
+Route::put('/sweepstakes', [SweepstakeController::class , 'putLatestSweepstake'])->middleware('login')->name('sweepstakes.update');
 
 Route::get('/laravel', function () {
     return view('welcome');
