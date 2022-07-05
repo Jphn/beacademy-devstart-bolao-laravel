@@ -1,5 +1,5 @@
 @extends('template.bootstrap')
-@section('title', 'Login')
+@section('title', 'Dashboard')
 @section('body')
 	<div class="container">
 		<section class="mt-3">
@@ -8,16 +8,17 @@
 		<hr />
 		<section>
 			<h2>Gerais</h2>
-			<button type="button" class="btn btn-primary" onclick="">
-				Atualizar concurso
+			<button type="button" class="btn btn-primary"
+				onclick="event.preventDefault(); document.getElementById('updateSweepstake').submit();">
+				Atualizar Concurso&ensp;
 				<i class="fa-solid fa-arrows-rotate"></i>
 			</button>
 			<button type="button" class="btn btn-info">
-				Administradores
+				Administradores&ensp;
 				<i class="fa-solid fa-lock"></i>
 			</button>
-			<a class="btn btn-primary" href="{{ route('admin.logout') }}">
-				Sair
+			<a class="btn btn-secondary" href="{{ route('admin.logout') }}">
+				Sair&ensp;
 				<i class="fa-solid fa-arrow-right-from-bracket"></i>
 			</a>
 		</section>
@@ -25,11 +26,11 @@
 		<section>
 			<h2>Gerenciar Participantes</h2>
 			<button type="button" class="btn btn-primary">
-				Adicionar
+				Adicionar&ensp;
 				<i class="fa-solid fa-plus"></i>
 			</button>
 			<button type="button" class="btn btn-info">
-				Gerar planilha
+				Gerar planilha&ensp;
 				<i class="fa-solid fa-file-csv"></i>
 			</button>
 			<div class="table-responsive">
@@ -69,7 +70,8 @@
 			</div>
 		</section>
 	</div>
-	<form action="" id="updateSweepstake">
+
+	<form action="{{ route('sweepstakes.update') }}" id="updateSweepstake" method="POST">
 		@method('PUT')
 		@csrf
 	</form>
