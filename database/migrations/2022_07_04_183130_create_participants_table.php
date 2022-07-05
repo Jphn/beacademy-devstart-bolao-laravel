@@ -18,10 +18,10 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('phone');
-            $table->json('dozens');
-            $table->integer('points');
-            $table->integer('update_number');
-            $table->boolean('is_active');
+            $table->json('dozens')->nullable(true);
+            $table->integer('points')->default(0);
+            $table->integer('update_number')->default(0);
+            $table->boolean('is_active')->default(false);
 
             $table->timestamps();
         });
