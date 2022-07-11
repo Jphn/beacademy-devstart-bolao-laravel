@@ -13,10 +13,18 @@ Route::get('/volante/{id}', [IndexController::class , 'getWheelPage'])->name('in
 
 Route::get('/login', [AdminController::class , 'getLoginPage'])->name('admin.login');
 Route::post('/login', [AdminController::class , 'postLogin'])->name('admin.login.post');
-Route::get('/dashboard', [AdminController::class , 'getDashboardPage'])->middleware('login')->name('admin.dashboard');
 Route::get('/logout', [AdminController::class , 'getLogoutUser'])->name('admin.logout');
 
-Route::put('/sweepstakes', [SweepstakeController::class , 'putLatestSweepstake'])->middleware('login')->name('sweepstakes.update');
+Route::middleware('require-admin-login')->group(function () {
+    Route::get('/dashboard', [AdminController::class , 'getDashboardPage'])->name('admin.dashboard');
+    Route::get('/participant/{id}/edit', [AdminController::class , 'getParticipantEditPage'])->name('participant.edit');
+
+    Route::put('/sweepstakes', [SweepstakeController::class , 'putLatestSweepstake'])->name('sweepstakes.update');
+
+    Route::post('/participants', [ParticipantController::class , 'postParticipant'])->name('participants.create');
+    Route::put('/participants/{id}/edit', [ParticipantController::class , 'putParticipant'])->name('participants.update');
+    Route::delete('/participants/{id}/delete', [ParticipantController::class , 'deleteParticipant'])->name('participants.delete');
+});
 
 Route::get('/laravel', function () {
     return view('welcome');
