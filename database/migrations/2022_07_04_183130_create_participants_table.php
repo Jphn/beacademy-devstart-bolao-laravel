@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('phone');
-            $table->json('dozens')->nullable(true);
+            $table->json('dozens');
             $table->integer('points')->default(0);
             $table->integer('update_number')->default(0);
             $table->boolean('active')->default(false);
