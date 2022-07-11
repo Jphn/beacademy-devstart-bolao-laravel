@@ -9,7 +9,7 @@ class IndexController extends Controller
 {
     public function getTablePage()
     {
-        $participants = Participant::orderByDesc('points')->where('is_active', true)->get();
+        $participants = Participant::orderByDesc('points')->where('active', true)->get();
 
         return view('table', compact('participants'));
     }
