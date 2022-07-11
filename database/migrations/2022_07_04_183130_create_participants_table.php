@@ -21,7 +21,7 @@ return new class extends Migration
             $table->json('dozens')->nullable(true);
             $table->integer('points')->default(0);
             $table->integer('update_number')->default(0);
-            $table->boolean('is_active')->default(false);
+            $table->boolean('active')->default(false);
 
             $table->timestamps();
         });
