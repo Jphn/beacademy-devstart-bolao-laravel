@@ -23,7 +23,7 @@ class SweepstakeController extends Controller
             'next_date' => date('Y-m-d', strtotime(str_replace('/', '-', $result['dataProxConcurso'])))
         ];
 
-        if (!Sweepstake::find($data['id'])->exists())
+        if (Sweepstake::find($data['id']) == null)
             $this->model->create($data);
 
         return redirect()->route('admin.dashboard');
