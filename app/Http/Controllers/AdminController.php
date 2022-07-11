@@ -47,4 +47,12 @@ class AdminController extends Controller
 
 		return redirect()->route('index.table');
 	}
+
+    public function getParticipantEditPage($id)
+    {
+        if ($participant = Participant::find($id))
+            return view('participant.edit', compact('participant'));
+
+        return redirect()->route('admin.dashboard');
+    }
 }
