@@ -25,8 +25,16 @@ class ParticipantsRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|min:3',
-            'phone' => 'required|string|min:11|max:11'
+            'phone' => 'required|string|min:11|max:11',
+            'password' => [
+                'required',
+                'min:6',
+                'max:12'
+            ]
         ];
+
+        if ($this->method('PUT'))
+            $rules['password'][0] = 'nullable';
 
         return $rules;
     }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Participant;
 use App\Http\Requests\ParticipantsRequest;
 
@@ -13,9 +12,11 @@ class ParticipantController extends Controller
         $this->model = $model;
     }
 
-    public function postParticipant(Request $req)
+    public function postParticipant(ParticipantsRequest $req)
     {
         $data = $req->only('name', 'phone');
+        $data['password'] = bcrypt($req->password);
+        $data['dozens'] = json_encode([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
 
         $this->model->create($data);
 
@@ -26,13 +27,19 @@ class ParticipantController extends Controller
     {
         $data = $req->only('name', 'phone');
 
+        if ($req->active == 'on')
+            $data['active'] = true;
+
+        if ($req->password)
+            $data['password'] = bcrypt($req->password);
+
         if ($participant = $this->model->find($id))
             $participant->update($data);
 
         return redirect()->route('admin.dashboard');
     }
 
-    public function deleteParticipant(Request $req, $id)
+    public function deleteParticipant($id)
     {
         if ($participant = $this->model->find($id))
             $participant->delete();

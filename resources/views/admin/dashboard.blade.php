@@ -8,10 +8,15 @@
 		<hr />
 		<section>
 			<h2>Gerais</h2>
+
 			<button type="button" class="btn btn-primary"
-				onclick="event.preventDefault(); document.getElementById('updateSweepstake').submit();">
+				onclick="event.preventDefault(); document.getElementById('updateSweepstakeForm').submit();">
 				Atualizar Concurso&ensp;
 				<i class="fa-solid fa-arrows-rotate"></i>
+			</button>
+			<button type="button" class="btn btn-warning">
+				Reiniciar Bolão&ensp;
+				<i class="fa-solid fa-power-off"></i>
 			</button>
 			<button type="button" class="btn btn-info">
 				Administradores&ensp;
@@ -25,7 +30,8 @@
 		<hr />
 		<section>
 			<h2>Gerenciar Participantes</h2>
-			<button type="button" class="btn btn-primary">
+
+			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newParticipantModal">
 				Adicionar&ensp;
 				<i class="fa-solid fa-plus"></i>
 			</button>
@@ -57,11 +63,12 @@
 								</td>
 								<td>{{ $participant->points }}</td>
 								<td>{{ $participant->update_number }}</td>
-								<td>{{ $participant->is_active }}</td>
+								<td>{{ $participant->active ? 'Ativo' : 'Desativado' }}</td>
 								<td>{{ $participant->dozens }}</td>
 								<td>
-									<a class="btn btn-sm btn-warning" href="">Editar</a>
-									<button class="btn btn-sm btn-danger" onclick="event.preventDefault();">Deletar</button>
+									<a class="btn btn-sm btn-warning" href="{{ route('participant.edit', $participant->id) }}">Editar</a>
+									<button class="btn btn-sm btn-danger"
+										onclick="event.preventDefault(); document.getElementById('deleteParticipantForm').action = '{{ route('participants.delete', $participant->id) }}'; document.getElementById('deleteParticipantForm').submit()">Deletar</button>
 								</td>
 							</tr>
 						@endforeach
@@ -71,8 +78,50 @@
 		</section>
 	</div>
 
-	<form action="{{ route('sweepstakes.update') }}" id="updateSweepstake" method="POST">
+	<form action="{{ route('sweepstakes.update') }}" id="updateSweepstakeForm" method="POST">
 		@method('PUT')
+		@csrf
+	</form>
+
+	<div class="modal fade" id="newParticipantModal" tabindex="-1" aria-labelledby="newParticipantModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="newParticipantModalLabel">Novo Participante</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="{{ route('participants.create') }}" method="POST" id="newParticipantForm">
+						@csrf
+						<div class="mb-3">
+							<label for="name" class="form-label">Nome</label>
+							<input type="text" class="form-control" id="name" name="name" required>
+						</div>
+						<div class="mb-3">
+							<label for="phone" class="form-label">Telefone</label>
+							<input type="text" class="form-control" id="phone" name="phone" minlength="11" maxlength="11" required>
+						</div>
+						<div class="mb-3">
+							<label for="password" class="form-label">Senha</label>
+							<input type="password" class="form-control" id="password" name="password" minlength="6" maxlength="12"
+								placeholder="Digite a senha...">
+						</div>
+
+						<button id="newParticipantFormSubmitButton" type="submit" hidden>submit</button>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+					<button type="button" class="btn btn-primary"
+						onclick="event.preventDefault(); document.getElementById('newParticipantFormSubmitButton').click();">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<form id="deleteParticipantForm" method="post">
+		@method('DELETE')
 		@csrf
 	</form>
 @endsection
