@@ -15,6 +15,7 @@ class Participant extends Model
         'dozens',
         'points',
         'update_number',
-        'is_active'
+        'is_active',
+        'password'
     ];
 }

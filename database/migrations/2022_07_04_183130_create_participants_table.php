@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('points')->default(0);
             $table->integer('update_number')->default(0);
             $table->boolean('active')->default(false);
+            $table->string('password');
 
             $table->timestamps();
         });
