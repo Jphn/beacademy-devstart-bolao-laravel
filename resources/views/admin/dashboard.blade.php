@@ -35,10 +35,10 @@
 				Adicionar&ensp;
 				<i class="fa-solid fa-plus"></i>
 			</button>
-			<button type="button" class="btn btn-info">
+			<a href="{{ route('participants.csv') }}" type="button" class="btn btn-info">
 				Gerar planilha&ensp;
 				<i class="fa-solid fa-file-csv"></i>
-			</button>
+			</a>
 			<div class="table-responsive">
 				<table class="table table-light table-striped table-hover mt-3">
 					<thead>

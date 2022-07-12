@@ -21,6 +21,7 @@ Route::middleware('require-admin-login')->group(function () {
 
     Route::put('/sweepstakes', [SweepstakeController::class , 'putLatestSweepstake'])->name('sweepstakes.update');
 
+    Route::get('/participants/csv', [ParticipantController::class , 'getParticipantsCsv'])->name('participants.csv');
     Route::post('/participants', [ParticipantController::class , 'postParticipant'])->name('participants.create');
     Route::put('/participants/{id}/edit', [ParticipantController::class , 'putParticipant'])->name('participants.update');
     Route::delete('/participants/{id}/delete', [ParticipantController::class , 'deleteParticipant'])->name('participants.delete');
