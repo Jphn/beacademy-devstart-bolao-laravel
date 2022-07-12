@@ -24,10 +24,10 @@ class AdminController extends Controller
 			return redirect()->route('admin.login');
 
 		session([
-			'user' => [
+			'login' => [
 				'name' => $user->name,
 				'email' => $user->email,
-				'timestamp' => date('d/m/Y H:i:s')
+				'timestamp' => new \DateTime('America/Sao_Paulo')
 			]
 		]);
 
@@ -43,16 +43,16 @@ class AdminController extends Controller
 
 	public function getLogoutUser()
 	{
-		session()->forget('user');
+		session()->flush();
 
 		return redirect()->route('index.table');
 	}
 
-    public function getParticipantEditPage($id)
-    {
-        if ($participant = Participant::find($id))
-            return view('participant.edit', compact('participant'));
+	public function getParticipantEditPage($id)
+	{
+		if ($participant = Participant::find($id))
+			return view('participant.edit', compact('participant'));
 
-        return redirect()->route('admin.dashboard');
-    }
+		return redirect()->route('admin.dashboard');
+	}
 }

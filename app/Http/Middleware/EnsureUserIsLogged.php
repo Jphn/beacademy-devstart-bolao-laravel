@@ -16,8 +16,13 @@ class EnsureUserIsLogged
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!session()->has('user'))
+        if (!session()->has('login'))
             return redirect()->route('admin.login');
+
+        $diff = session('login')['timestamp']->diff(new \DateTime('America/Sao_Paulo'));
+
+        if ($diff->d >= 1)
+            return redirect()->route('admin.logout');
 
         return $next($request);
     }
