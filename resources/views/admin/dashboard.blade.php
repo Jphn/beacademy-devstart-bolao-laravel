@@ -5,40 +5,56 @@
 		<section class="mt-3">
 			<h1>Painel de controle</h1>
 		</section>
+
 		<hr />
+
 		<section>
-			<h2>Gerais</h2>
+			<h2>Opções Gerais</h2>
 
 			<button type="button" class="btn btn-primary"
 				onclick="event.preventDefault(); document.getElementById('updateSweepstakeForm').submit();">
-				Atualizar Concurso&ensp;
+				Atualizar Concurso
+				&ensp;
 				<i class="fa-solid fa-arrows-rotate"></i>
 			</button>
-			<button type="button" class="btn btn-warning">
-				Reiniciar Bolão&ensp;
+
+			<button type="button" class="btn btn-warning"
+				onclick="event.preventDefault(); document.getElementById('putResetParticipants').submit()">
+				Reiniciar Bolão
+				&ensp;
 				<i class="fa-solid fa-power-off"></i>
 			</button>
-			<button type="button" class="btn btn-info">
-				Administradores&ensp;
+
+			<button type="button" class="btn btn-info disabled">
+				Administradores
+				&ensp;
 				<i class="fa-solid fa-lock"></i>
 			</button>
+
 			<a class="btn btn-secondary" href="{{ route('admin.logout') }}">
-				Sair&ensp;
+				Sair
+				&ensp;
 				<i class="fa-solid fa-arrow-right-from-bracket"></i>
 			</a>
 		</section>
+
 		<hr />
+
 		<section>
 			<h2>Gerenciar Participantes</h2>
 
 			<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#newParticipantModal">
-				Adicionar&ensp;
+				Adicionar
+				&ensp;
 				<i class="fa-solid fa-plus"></i>
 			</button>
-			<a href="{{ route('participants.csv') }}" class="btn btn-info">
-				Gerar planilha&ensp;
+
+			<a href="{{ route('participants.csv') }}" class="btn btn-info disabled">
+				Gerar planilha
+				&ensp;
 				<i class="fa-solid fa-file-csv"></i>
 			</a>
+
 			<div class="table-responsive">
 				<table class="table table-light table-striped table-hover mt-3">
 					<thead>
@@ -53,6 +69,7 @@
 							<th scope="col">Ações</th>
 						</tr>
 					</thead>
+
 					<tbody>
 						@foreach ($participants as $key => $participant)
 							<tr>
@@ -65,12 +82,18 @@
 								</td>
 								<td>{{ $participant->points }}</td>
 								<td>{{ $participant->update_number }}</td>
-								<td>{{ $participant->active ? 'Ativo' : 'Inativo' }}</td>
+								<td>
+									{{ $participant->active ? 'Ativo' : 'Inativo' }}
+									<i
+										class="fa-solid fa-{{ $participant->active ? 'circle-check text-success' : 'circle-xmark text-danger' }}"></i>
+								</td>
 								<td>{{ $participant->dozens }}</td>
 								<td>
 									<a class="btn btn-sm btn-warning" href="{{ route('participant.edit', $participant->id) }}">Editar</a>
 									<button class="btn btn-sm btn-danger"
-										onclick="event.preventDefault(); document.getElementById('deleteParticipantForm').action = '{{ route('participants.delete', $participant->id) }}'; document.getElementById('deleteParticipantForm').submit()">Deletar</button>
+										onclick="event.preventDefault(); document.getElementById('deleteParticipantForm').action = '{{ route('participants.delete', $participant->id) }}'; document.getElementById('deleteParticipantForm').submit()">
+										Deletar
+									</button>
 								</td>
 							</tr>
 						@endforeach
@@ -122,8 +145,13 @@
 		</div>
 	</div>
 
-	<form id="deleteParticipantForm" method="post">
+	<form id="deleteParticipantForm" method="POST">
 		@method('DELETE')
+		@csrf
+	</form>
+
+	<form id="putResetParticipants" method="POST" action="{{ route('participants.reset') }}">
+		@method('PUT')
 		@csrf
 	</form>
 @endsection
