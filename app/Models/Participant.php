@@ -19,6 +19,10 @@ class Participant extends Model
         'password'
     ];
 
+    protected $hidden = [
+        'password',
+    ];
+
     private function getAllParticipantsToUpdate(int $number)
     {
         return $this->where('active', true)
