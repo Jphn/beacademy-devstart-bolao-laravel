@@ -23,6 +23,17 @@ class ParticipantController extends Controller
         return redirect()->route('admin.dashboard');
     }
 
+    public function putResetParticipants()
+    {
+        $this->model->where('active', true)->update([
+            'points' => 0,
+            'update_number' => 0,
+            'dozens' => json_encode([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+        ]);
+
+        return redirect()->back();
+    }
+
     public function putParticipant(ParticipantsRequest $req, $id)
     {
         $data = $req->only('name', 'phone');
