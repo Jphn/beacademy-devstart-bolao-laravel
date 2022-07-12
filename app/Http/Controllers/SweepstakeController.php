@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Sweepstake;
+use App\Models\Participant;
 
 class SweepstakeController extends Controller
 {
-    public function __construct(Sweepstake $model)
+    public function __construct(Sweepstake $sweepstake, Participant $participant)
     {
-        $this->model = $model;
+        $this->sweepstake = $sweepstake;
+        $this->participant = $participant;
     }
 
     public function putLatestSweepstake()
@@ -23,8 +24,10 @@ class SweepstakeController extends Controller
             'next_date' => date('Y-m-d', strtotime(str_replace('/', '-', $result['dataProxConcurso'])))
         ];
 
+        $this->participant->updateParticipantsPoints($data['id'], json_decode($data['dozens']));
+
         if (Sweepstake::find($data['id']) == null)
-            $this->model->create($data);
+            $this->sweepstake->create($data);
 
         return redirect()->route('admin.dashboard');
     }
