@@ -63,7 +63,7 @@
 								</td>
 								<td>{{ $participant->points }}</td>
 								<td>{{ $participant->update_number }}</td>
-								<td>{{ $participant->active ? 'Ativo' : 'Desativado' }}</td>
+								<td>{{ $participant->active ? 'Ativo' : 'Inativo' }}</td>
 								<td>{{ $participant->dozens }}</td>
 								<td>
 									<a class="btn btn-sm btn-warning" href="{{ route('participant.edit', $participant->id) }}">Editar</a>

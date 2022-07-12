@@ -26,9 +26,7 @@ class ParticipantController extends Controller
     public function putParticipant(ParticipantsRequest $req, $id)
     {
         $data = $req->only('name', 'phone');
-
-        if ($req->active == 'on')
-            $data['active'] = true;
+        $data['active'] = (bool)$req->active ?? false;
 
         if ($req->password)
             $data['password'] = bcrypt($req->password);
