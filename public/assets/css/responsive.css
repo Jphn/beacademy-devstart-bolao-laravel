@@ -1,0 +1,109 @@
+@media screen and (min-width: 1920px) {
+	main div.v-container {
+		justify-content: space-evenly;
+	}
+
+	div.btn-dzn {
+		height: 7rem;
+		width: 7rem;
+	}
+
+	section.panel {
+		max-width: 30vw;
+	}
+
+	section.panel div.w-chosen div.btn-dzn {
+		height: 5.2rem;
+		width: 5.2rem;
+	}
+}
+
+@media screen and (max-width: 1260px) {
+	div.btn-dzn {
+		height: 4.8rem;
+		width: 4.8rem;
+	}
+}
+
+@media screen and (max-width: 1133px) {
+}
+
+@media screen and (max-width: 950px) {
+	main div.v-container {
+		max-width: 100vw;
+		height: 100%;
+
+		flex-direction: column;
+		align-items: center;
+		gap: 3rem;
+	}
+
+	section {
+		padding: 1.2rem;
+		max-width: 92vw;
+	}
+
+	section.panel {
+		max-width: 92vw;
+	}
+
+	div.btn-dzn {
+		height: 6.8rem;
+		width: 6.8rem;
+	}
+
+	button.btn {
+		padding: 1rem;
+
+		font-size: 1.9rem;
+	}
+
+	p {
+		font-size: 2.2rem;
+	}
+
+	h2 {
+		text-align: center;
+		font-size: 3.8rem;
+	}
+}
+
+@media screen and (max-width: 900px) {
+}
+
+@media screen and (max-width: 768px) {
+	div.btn-dzn {
+		height: 6.1rem;
+		width: 6.1rem;
+	}
+}
+
+@media screen and (max-width: 650px) {
+	div.btn-dzn {
+		height: 5.2rem;
+		width: 5.2rem;
+	}
+}
+
+@media screen and (max-width: 580px) {
+	html {
+		font-size: 50.2%;
+	}
+
+	div.btn-dzn {
+		height: 5.9rem;
+		width: 5.9rem;
+	}
+
+	section.wheel div.w-numbers {
+		grid-template-columns: repeat(6, 1fr);
+	}
+
+	section.panel div.w-chosen {
+		display: grid;
+		grid-template-columns: repeat(5, 1fr);
+		justify-content: center;
+		justify-items: center;
+		row-gap: 0.2rem;
+	}
+}

@@ -1,0 +1,66 @@
+main {
+	height: 100vh;
+	width: 100vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+main div.v-container {
+	max-width: 92vw;
+	width: 100%;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+section {
+	display: flex;
+	flex-direction: column;
+
+	max-width: 45vw;
+
+	gap: 2rem;
+}
+
+section.wheel div.w-numbers {
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	grid-template-rows: repeat(6, 1fr);
+	justify-items: center;
+	row-gap: 0.4rem;
+}
+
+section.panel {
+	max-width: 40vw;
+	height: 100%;
+}
+
+section.panel div.w-chosen {
+	display: flex;
+	justify-content: space-between;
+}
+
+section.panel div.w-chosen div.btn-dzn {
+	font-size: 2.6rem;
+}
+
+section.panel div.w-counters {
+	display: flex;
+	justify-content: space-between;
+}
+
+section.panel form.w-input {
+	width: 100%;
+}
+
+section.panel form.w-input input {
+	width: 100%;
+}
+
+section.panel div.w-buttons {
+	display: flex;
+	justify-content: space-between;
+}

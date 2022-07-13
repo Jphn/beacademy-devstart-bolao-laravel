@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+    --dark: #081c15;
+    --middle-d1: #40916c;
+    --middle: #52b788;
+    --middle-w1: #74c69d;
+    --white: #fefefe;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    background-color: var(--white);
+}
+
+h2 {
+    font-size: 3.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+p {
+    font-size: 1.9rem;
+
+    text-align: justify;
+}
+
+hr {
+    border: 0.1rem solid;
+}
+
+div.btn-dzn {
+    height: 5.4rem;
+    width: 5.4rem;
+
+    font-size: 2.6rem;
+    font-weight: 500;
+    color: var(--white);
+
+    background-color: var(--middle);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 1.5s;
+    transition: transform 400ms;
+}
+
+div.btn-dzn:hover {
+    cursor: pointer;
+    background-color: var(--middle-d1);
+    transform: scale(110%) translateY(-10%);
+}
+
+div.btn-dzn.selected {
+    background-color: var(--middle-d1);
+    transform: translateY(-10%);
+}
+
+div.btn-dzn.outline {
+    background-color: transparent;
+    color: var(--middle-d1);
+
+    cursor: default;
+
+    border: 0.3rem solid var(--middle-d1);
+
+    transform: translateY(10%);
+
+    transition: all 300ms;
+}
+
+div.btn-dzn.outline.selected {
+    background-color: var(--middle-d1);
+
+    transform: translateY(-10%);
+
+    color: var(--white);
+}
+
+button.btn {
+    background-color: var(--middle-d1);
+
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.7rem;
+
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
+
+    transition: all 400ms;
+}
+
+button.btn:hover {
+    background-color: var(--middle);
+
+    transform: scale(110%);
+}
+
+button.btn.outline {
+    background-color: transparent;
+
+    border: 0.2rem solid;
+
+    color: var(--middle-d1);
+}
+
+button.btn.outline:hover {
+    color: var(--middle);
+}
+
+input[type="password"] {
+    padding: 1rem;
+
+    font-size: 1.7rem;
+
+    border-radius: 1.2rem;
+    border: solid 0.3rem var(--middle-d1);
+
+    transition: all 300ms;
+}
+
+input[type="password"]:focus {
+    outline: none !important;
+    border: solid 0.4rem var(--middle);
+}
