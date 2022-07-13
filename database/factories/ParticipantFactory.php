@@ -19,11 +19,22 @@ class ParticipantFactory extends Factory
         return [
             'name' => fake()->name(),
             'phone' => fake()->phoneNumber(),
-            'dozens' => json_encode([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]),
-            'points' => fake()->numberBetween(0, 10),
-            'update_number' => fake()->numberBetween(1000, 9999),
+            'dozens' => $this->generateRandomDozens(),
+            'points' => 0,
+            'update_number' => 0,
             'active' => true,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi' // password
         ];
+    }
+
+    private function generateRandomDozens(): array
+    {
+        $dozens = [];
+
+        for ($i = 1; $i <= 10; $i++) {
+            array_push($dozens, $this->faker->numberBetween(1, 60));
+        }
+
+        return $dozens;
     }
 }

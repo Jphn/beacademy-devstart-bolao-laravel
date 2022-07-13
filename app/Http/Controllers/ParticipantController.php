@@ -17,7 +17,7 @@ class ParticipantController extends Controller
     {
         $data = $req->only('name', 'phone');
         $data['password'] = bcrypt($req->password);
-        $data['dozens'] = json_encode([0, 0, 0, 0, 0, 0, 0, 0, 0, 0]);
+        $data['dozens'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
         $this->model->create($data);
 
@@ -29,7 +29,7 @@ class ParticipantController extends Controller
         $this->model->where('active', true)->update([
             'points' => 0,
             'update_number' => 0,
-            'dozens' => json_encode([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+            'dozens' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         ]);
 
         return redirect()->back();

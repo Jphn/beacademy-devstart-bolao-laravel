@@ -18,7 +18,7 @@
 			<div class="mb-3">
 				<label for="phone" class="form-label">Telefone</label>
 				<input value="{{ $participant->phone }}" type="text" class="form-control" id="phone" name="phone"
-					required>
+					maxlength="11" minlength="11" required>
 			</div>
 			<div class="mb-3">
 				<label for="points" class="form-label">Pontos</label>
@@ -32,7 +32,7 @@
 			</div>
 			<div class="mb-3">
 				<label for="dozens" class="form-label">Dezenas</label>
-				<input value="{{ $participant->dozens }}" type="text" class="form-control" id="dozens" name="dozens"
+				<input value="{{ $participant->string_dozens }}" type="text" class="form-control" id="dozens" name="dozens"
 					required readonly disabled>
 			</div>
 			<div class="mb-3 form-check form-switch">
@@ -42,7 +42,8 @@
 			</div>
 			<div class="mb-3">
 				<label for="password" class="form-label">Nova Senha</label>
-				<input type="password" class="form-control" id="password" name="password" placeholder="Digite a senha...">
+				<input type="password" class="form-control" id="password" name="password" placeholder="Digite a senha..."
+					maxlength="12" minlength="6">
 			</div>
 
 			<a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">Voltar</a>

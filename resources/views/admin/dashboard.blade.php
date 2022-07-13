@@ -87,7 +87,7 @@
 									<i
 										class="fa-solid fa-{{ $participant->active ? 'circle-check text-success' : 'circle-xmark text-danger' }}"></i>
 								</td>
-								<td>{{ $participant->dozens }}</td>
+								<td>{{ $participant->string_dozens }}</td>
 								<td>
 									<a class="btn btn-sm btn-warning" href="{{ route('participant.edit', $participant->id) }}">Editar</a>
 									<button class="btn btn-sm btn-danger"

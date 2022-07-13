@@ -20,11 +20,11 @@ class SweepstakeController extends Controller
 
         $data = [
             'id' => $result['concurso'],
-            'dozens' => json_encode($result['dezenas']),
+            'dozens' => $result['dezenas'],
             'next_date' => date('Y-m-d', strtotime(str_replace('/', '-', $result['dataProxConcurso'])))
         ];
 
-        $this->participant->updateParticipantsPoints($data['id'], json_decode($data['dozens']));
+        $this->participant->updateParticipantsPoints($data['id'], $data['dozens']);
 
         if (Sweepstake::find($data['id']) == null)
             $this->sweepstake->create($data);

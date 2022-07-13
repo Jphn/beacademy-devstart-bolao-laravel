@@ -2,7 +2,29 @@
 @section('title', 'Todos os participantes')
 @section('body')
 	<section class="container">
+		<h1>Ultimos resultados</h1>
+
+
+	</section>
+
+	<section class="container">
 		<h1>Tabela de participantes</h1>
+
+		<button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+		        data-bs-target="#sweepstakeCollapse"
+		        aria-expanded="false" aria-controls="sweepstakeCollapse">
+			Último Concurso
+		</button>
+		</p>
+		<div class="collapse" id="sweepstakeCollapse">
+			<div class="card card-body">
+				<p>Concurso Nº: {{ $sweepstake->id }}</p>
+				<p>
+					<strong>Dezenas:</strong>
+					{{ $sweepstake->string_dozens }}.
+				</p>
+			</div>
+		</div>
 
 		<table class="table">
 			<thead>
@@ -19,7 +41,7 @@
 						<th>{{ $key + 1 }}</th>
 						<td>{{ $participant->name }}</td>
 						<td>{{ $participant->points }}</td>
-						<td>{{ $participant->dozens }}</td>
+						<td>{{ $participant->string_dozens }}</td>
 					</tr>
 				@endforeach
 			</tbody>
