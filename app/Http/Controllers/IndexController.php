@@ -3,19 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Participant;
+use App\Models\Sweepstake;
 
 class IndexController extends Controller
 {
-	public function __construct(Participant $participant)
+	public function __construct(Participant $participant, Sweepstake $sweepstake)
 	{
 		$this->participant = $participant;
+		$this->sweepstake = $sweepstake;
 	}
 
 	public function getTablePage()
 	{
 		$participants = $this->participant->orderByDesc('points')->where('active', true)->get();
 
-		return view('table', compact('participants'));
+		$sweepstake = $this->sweepstake->first();
+
+		return view('table', compact('participants', 'sweepstake'));
 	}
 
 	public function getWheelPage($id)
