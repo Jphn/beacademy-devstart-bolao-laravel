@@ -77,7 +77,7 @@
 								<td>{{ $participant->name }}</td>
 								<td>
 									<a
-										href="https://wa.me/{{ $participant->phone }}?text=Ol%C3%A1+{{ str_replace(' ', '+', $participant->name) }}%2C+aqui+est%C3%A1+o+seu+link+para+selecionar+suas+dezenas.+Link%3A+https%3A%2F%2Fseudominio.com%2Fdezenas%2F{{ $participant->id }}"
+										href="https://wa.me/{{ $participant->phone }}?text=Ol%C3%A1+{{ str_replace(' ', '+', $participant->name) }}%2C+aqui+est%C3%A1+o+seu+link+para+selecionar+suas+dezenas.+Link%3A+https%3A%2F%2Fseudominio.com%2Fvolante%2F{{ $participant->id }}"
 										target="_blank">{{ $participant->phone }}</a>
 								</td>
 								<td>{{ $participant->points }}</td>
