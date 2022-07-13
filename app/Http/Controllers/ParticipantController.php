@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Participant;
 use App\Http\Requests\ParticipantsRequest;
+use Symfony\Component\HttpFoundation\Request;
 
 class ParticipantController extends Controller
 {
@@ -46,6 +47,21 @@ class ParticipantController extends Controller
             $participant->update($data);
 
         return redirect()->route('admin.dashboard');
+    }
+
+    public function putParticipantDozens(Request $req, $id)
+    {
+        $dozens = json_decode($req->dozens);
+
+        if (count(array_unique($dozens)) == 10)
+            $participant = $this->model->find($id);
+
+        if ($participant && password_verify($req->password, $participant->password))
+            $participant->update([
+                'dozens' => $req->dozens
+            ]);
+
+        return redirect()->back();
     }
 
     public function deleteParticipant($id)

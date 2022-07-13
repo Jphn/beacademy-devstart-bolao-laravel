@@ -15,6 +15,8 @@ Route::get('/login', [AdminController::class , 'getLoginPage'])->name('admin.log
 Route::post('/login', [AdminController::class , 'postLogin'])->name('admin.login.post');
 Route::get('/logout', [AdminController::class , 'getLogoutUser'])->name('admin.logout');
 
+Route::put('/participants/{id}/update/dozens', [ParticipantController::class , 'putParticipantDozens'])->name('participants.update.dozens');
+
 Route::middleware('require-admin-login')->group(function () {
     Route::get('/dashboard', [AdminController::class , 'getDashboardPage'])->name('admin.dashboard');
     Route::get('/participant/{id}/edit', [AdminController::class , 'getParticipantEditPage'])->name('participant.edit');
@@ -24,7 +26,7 @@ Route::middleware('require-admin-login')->group(function () {
     Route::get('/participants/csv', [ParticipantController::class , 'getParticipantsCsv'])->name('participants.csv');
     Route::post('/participants', [ParticipantController::class , 'postParticipant'])->name('participants.create');
     Route::put('/participants/reset', [ParticipantController::class , 'putResetParticipants'])->name('participants.reset');
-    Route::put('/participants/{id}/edit', [ParticipantController::class , 'putParticipant'])->name('participants.update');
+    Route::put('/participants/{id}/update', [ParticipantController::class , 'putParticipant'])->name('participants.update');
     Route::delete('/participants/{id}/delete', [ParticipantController::class , 'deleteParticipant'])->name('participants.delete');
 });
 
