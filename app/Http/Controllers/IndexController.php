@@ -28,7 +28,7 @@ class IndexController extends Controller
 
 		$participant = $this->participant->where('active', true)->find($id);
 
-		if (!$participant || count(array_diff(json_decode($participant->dozens), $modelDozens)) == 10)
+		if (!$participant || count(array_diff($participant->dozens, $modelDozens)) == 10)
 			return redirect()->route('index.table');
 
 		return view('wheel', compact('id'));
