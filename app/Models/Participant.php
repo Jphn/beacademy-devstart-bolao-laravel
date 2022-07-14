@@ -26,6 +26,12 @@ class Participant extends Model
 
 	protected $hidden = [
 		'password',
+		'updated_at',
+		'created_at'
+	];
+
+	protected $appends = [
+		'string_dozens'
 	];
 
 	public function updateParticipantsPoints(int $number, array $dozens)

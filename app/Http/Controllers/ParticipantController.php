@@ -2,73 +2,97 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Participant;
 use App\Http\Requests\ParticipantsRequest;
+use App\Models\Participant;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Request;
 
 class ParticipantController extends Controller
 {
-    public function __construct(Participant $model)
-    {
-        $this->model = $model;
-    }
+	public function __construct(Participant $model)
+	{
+		$this->model = $model;
+	}
 
-    public function postParticipant(ParticipantsRequest $req)
-    {
-        $data = $req->only('name', 'phone');
-        $data['password'] = bcrypt($req->password);
-        $data['dozens'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+	public function getParticipantsCsv()
+	{
+		$file = fopen(public_path('storage/participants.csv'), 'w');
 
-        $this->model->create($data);
+		fputcsv($file, [
+			'PARTICIPANTE',
+			'PONTUAÇÃO',
+			'CONCURSO',
+			'DEZENAS'
+		]);
 
-        return redirect()->route('admin.dashboard');
-    }
+		$this->model->orderByDesc('points')->where('active', true)->chunk(2000, function ($participants) use ($file) {
+			foreach ($participants->toArray() as $participant) {
+				unset($participant['id'], $participant['dozens'], $participant['active'], $participant['phone']);
+				fputcsv($file, $participant);
+			}
+		});
 
-    public function putResetParticipants()
-    {
-        $this->model->query()->update([
-            'points' => 0,
-            'update_number' => 0,
-            'dozens' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-        ]);
+		fclose($file);
 
-        return redirect()->back();
-    }
+		return Storage::disk('public')->download('participants.csv', date('d-m-Y') . '.csv');
+	}
 
-    public function putParticipant(ParticipantsRequest $req, $id)
-    {
-        $data = $req->only('name', 'phone');
-        $data['active'] = (bool)$req->active ?? false;
+	public function postParticipant(ParticipantsRequest $req)
+	{
+		$data = $req->only('name', 'phone');
+		$data['password'] = bcrypt($req->password);
+		$data['dozens'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-        if ($req->password)
-            $data['password'] = bcrypt($req->password);
+		$this->model->create($data);
 
-        if ($participant = $this->model->find($id))
-            $participant->update($data);
+		return redirect()->route('admin.dashboard');
+	}
 
-        return redirect()->route('admin.dashboard');
-    }
+	public function putResetParticipants()
+	{
+		$this->model->query()->update([
+			'points' => 0,
+			'update_number' => 0,
+			'dozens' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+		]);
 
-    public function putParticipantDozens(Request $req, $id)
-    {
-        $dozens = json_decode($req->dozens);
+		return redirect()->back();
+	}
 
-        if (count(array_unique($dozens)) == 10)
-            $participant = $this->model->find($id);
+	public function putParticipant(ParticipantsRequest $req, $id)
+	{
+		$data = $req->only('name', 'phone');
+		$data['active'] = (bool)$req->active ?? false;
 
-        if ($participant && password_verify($req->password, $participant->password))
-            $participant->update([
-                'dozens' => $dozens
-            ]);
+		if ($req->password)
+			$data['password'] = bcrypt($req->password);
 
-        return redirect()->back();
-    }
+		if ($participant = $this->model->find($id))
+			$participant->update($data);
 
-    public function deleteParticipant($id)
-    {
-        if ($participant = $this->model->find($id))
-            $participant->delete();
+		return redirect()->route('admin.dashboard');
+	}
 
-        return redirect()->route('admin.dashboard');
-    }
+	public function putParticipantDozens(Request $req, $id)
+	{
+		$dozens = json_decode($req->dozens);
+
+		if (count(array_unique($dozens)) == 10)
+			$participant = $this->model->find($id);
+
+		if ($participant && password_verify($req->password, $participant->password))
+			$participant->update([
+				'dozens' => $dozens
+			]);
+
+		return redirect()->back();
+	}
+
+	public function deleteParticipant($id)
+	{
+		if ($participant = $this->model->find($id))
+			$participant->delete();
+
+		return redirect()->route('admin.dashboard');
+	}
 }
