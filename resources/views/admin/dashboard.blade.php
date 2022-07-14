@@ -18,8 +18,7 @@
 				<i class="fa-solid fa-arrows-rotate"></i>
 			</button>
 
-			<button type="button" class="btn btn-warning"
-				onclick="event.preventDefault(); document.getElementById('putResetParticipants').submit()">
+			<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#approveResetModal">
 				Reiniciar Bolão
 				&ensp;
 				<i class="fa-solid fa-power-off"></i>
@@ -140,6 +139,27 @@
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 					<button type="button" class="btn btn-primary"
 						onclick="event.preventDefault(); document.getElementById('newParticipantFormSubmitButton').click();">Salvar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="approveResetModal" tabindex="-1" role="dialog"
+		aria-labelledby="approveResetModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="approveResetModalLabel">Deseja mesmo continuar?</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					Esta ação é <strong>irreversível</strong>, e irá <strong>formatar</strong> os valores de <strong>todos os
+						participantes</strong> cadastrados.
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+					<button type="button" class="btn btn-danger"
+						onclick="event.preventDefault(); document.getElementById('putResetParticipants').submit()">Confirmar</button>
 				</div>
 			</div>
 		</div>
