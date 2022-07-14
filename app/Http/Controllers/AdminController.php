@@ -17,7 +17,7 @@ class AdminController extends Controller
 	{
 		$queryParams = $req->only('email', 'password');
 
-		if (!$user = User::where('email', $queryParams['email'])->get()[0])
+		if (!$user = User::where('email', $queryParams['email'])->get()[0] ?? null)
 			return redirect()->route('admin.login');
 
 		if (!password_verify($queryParams['password'], $user->password))
