@@ -18,7 +18,7 @@ class ParticipantFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'phone' => fake()->phoneNumber(),
+            'phone' => fake()->numberBetween(10000000000, 99999999999),
             'dozens' => $this->generateRandomDozens(),
             'points' => 0,
             'update_number' => 0,
