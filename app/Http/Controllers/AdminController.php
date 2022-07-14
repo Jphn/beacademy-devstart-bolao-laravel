@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Participant;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -15,23 +16,12 @@ class AdminController extends Controller
 
 	public function postLogin(Request $req)
 	{
-		$queryParams = $req->only('email', 'password');
+		$credentials = $req->only('email', 'password');
 
-		if (!$user = User::where('email', $queryParams['email'])->get()[0] ?? null)
-			return redirect()->route('admin.login');
+		if (Auth::attempt($credentials))
+			return redirect()->intended('/dashboard');
 
-		if (!password_verify($queryParams['password'], $user->password))
-			return redirect()->route('admin.login');
-
-		session([
-			'login' => [
-				'name' => $user->name,
-				'email' => $user->email,
-				'timestamp' => new \DateTime('America/Sao_Paulo')
-			]
-		]);
-
-		return redirect()->route('admin.dashboard');
+		return redirect()->back();
 	}
 
 	public function getDashboardPage()
@@ -43,7 +33,7 @@ class AdminController extends Controller
 
 	public function getLogoutUser()
 	{
-		session()->flush();
+		Auth::logout();
 
 		return redirect()->route('index.table');
 	}

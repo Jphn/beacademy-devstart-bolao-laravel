@@ -1,9 +1,9 @@
 @extends('template.bootstrap')
-@section('title', 'Dashboard')
+@section('title', 'Painel de Controle')
 @section('body')
 	<div class="container">
 		<section class="mt-3">
-			<h1>Painel de controle</h1>
+			<h1>Bem-vindo {{ Auth::user()->name }}!</h1>
 		</section>
 
 		<hr />
