@@ -26,7 +26,7 @@ class ParticipantController extends Controller
 
     public function putResetParticipants()
     {
-        $this->model->where('active', true)->update([
+        $this->model->query()->update([
             'points' => 0,
             'update_number' => 0,
             'dozens' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
@@ -58,7 +58,7 @@ class ParticipantController extends Controller
 
         if ($participant && password_verify($req->password, $participant->password))
             $participant->update([
-                'dozens' => $req->dozens
+                'dozens' => $dozens
             ]);
 
         return redirect()->back();
