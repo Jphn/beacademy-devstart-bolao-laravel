@@ -6,6 +6,8 @@
 	<section class="container">
 		<h1 class="mb-3">EDIÇÃO - {{ $participant->name }}</h1>
 
+		@include('partial.error')
+
 		<hr>
 
 		<form action="{{ route('participants.update', $participant->id) }}" method="post">
