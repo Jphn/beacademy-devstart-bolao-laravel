@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+:root {
+	--dark: #081c15;
+	--middle-d1: #40916c;
+	--middle: #52b788;
+	--middle-w1: #74c69d;
+	--gray: #cccccc;
+	--white: #fefefe;
+}
+
+* {
+	font-family: "Roboto", sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+}
+
+body {
+	background-color: var(--white);
+}
+
+h2,
+h3,
+h4 {
+	text-align: center;
+	text-transform: uppercase;
+}
+
+h2 {
+	font-size: 3.4rem;
+	font-weight: 700;
+}
+
+h3 {
+	font-size: 2.8rem;
+	font-weight: 500;
+}
+
+h4 {
+	font-size: 2.7rem;
+	font-weight: 400;
+}
+
+p {
+	font-size: 2rem;
+	text-align: justify;
+}
+
+hr {
+	background-color: var(--dark);
+
+	border: 0.2rem solid var(--dark);
+	border-radius: 1rem;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-spacing: 0;
+
+	text-align: center;
+}
+
+thead {
+	background-color: var(--middle-d1);
+	color: var(--white);
+
+	font-size: 2rem;
+}
+
+tbody {
+	font-size: 1.9rem;
+}
+
+td {
+	padding: 0.5rem;
+}
+
+tbody tr:nth-child(odd) {
+	background-color: var(--white);
+}
+
+tbody tr:nth-child(even) {
+	background-color: var(--gray);
+}
+
+.w-header {
+	width: 100%;
+}
+
+div.number {
+	background-color: var(--middle-d1);
+
+	height: fit-content;
+	width: fit-content;
+
+	border-radius: 50%;
+
+	font-size: 2.9rem;
+	padding: 1.2rem;
+	color: var(--white);
+}
+
+.container {
+	width: 85vw;
+}

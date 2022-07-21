@@ -8,10 +8,10 @@
 
 	<title>Volante Virtual</title>
 
-	<link href="{{ asset('./assets/css/reset.css') }}" rel="stylesheet" />
-	<link href="{{ asset('./assets/css/pattern.css') }}" rel="stylesheet" />
-	<link href="{{ asset('./assets/css/style.css') }}" rel="stylesheet" />
-	<link href="{{ asset('./assets/css/responsive.css') }}" rel="stylesheet" />
+	<link href="{{ asset('./assets/css/wheelPage/reset.css') }}" rel="stylesheet" />
+	<link href="{{ asset('./assets/css/wheelPage/pattern.css') }}" rel="stylesheet" />
+	<link href="{{ asset('./assets/css/wheelPage/style.css') }}" rel="stylesheet" />
+	<link href="{{ asset('./assets/css/wheelPage/responsive.css') }}" rel="stylesheet" />
 </head>
 
 <body>

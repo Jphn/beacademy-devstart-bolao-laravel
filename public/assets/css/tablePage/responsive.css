@@ -1,0 +1,79 @@
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {}
+
+/* Small screen devices (600px and above) */
+@media only screen and (min-width: 600px) {
+	html {
+		font-size: 62.5%;
+	}
+
+	section.sweepstake div.w-numbers {
+		justify-content: space-evenly;
+	}
+
+	.container {
+		width: 80vw;
+	}
+
+	div.number {
+		font-size: 3rem;
+		padding: 1.8rem;
+	}
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+	div.number {
+		font-size: 3.2rem;
+		padding: 1.5rem;
+	}
+
+	section.sweepstake div.w-past div.past {
+		width: fit-content;
+	}
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {
+	h2 {
+		font-size: 5rem;
+	}
+
+	h3 {
+		font-size: 3.4rem;
+	}
+
+	section.sweepstake div.w-past div.w-content {
+		flex-direction: row;
+	}
+}
+
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+	section.sweepstake div.w-past div.w-content div.past div.w-numbers div.number {
+		font-size: 2.2rem;
+		padding: 1.2rem;
+	}
+
+	section {
+		/* offset-x | offset-y | blur-radius | spread-radius | color */
+		box-shadow: 0rem 0rem 0.4rem 0.2rem rgba(0, 0, 0, 0.2);
+
+		border-radius: 4rem;
+
+		padding: 2rem;
+		height: fit-content;
+	}
+
+	hr {
+		display: none;
+	}
+
+	main {
+		flex-direction: row-reverse;
+	}
+
+	.container {
+		width: 90vw;
+	}
+}
