@@ -8,24 +8,15 @@
 					<div class="card shadow-2-strong" style="border-radius: 1rem">
 						<form method="POST" class="card-body p-5 text-center">
 							@csrf
-							<h3 class="mb-5">Painel de controle</h3>
+							<h3 class="mb-3">Painel de controle</h3>
 
-							<div class="form-outline mb-4">
-								<input name="email" type="email" id="typeEmailX-2" class="form-control form-control-lg" required />
-								<label class="form-label" for="typeEmailX-2">Email</label>
+							<div class="form-floating mb-2">
+								<input type="email" class="form-control" id="emailInput" placeholder="name@example.com" name="email" require>
+								<label for="emailInput">Email</label>
 							</div>
-
-							<div class="form-outline mb-4">
-								<input name="password" type="password" id="typePasswordX-2" class="form-control form-control-lg" required />
-								<label class="form-label" for="typePasswordX-2">Senha</label>
-							</div>
-
-							<!-- Checkbox -->
-							<div class="form-check d-flex justify-content-start mb-4">
-								<input class="form-check-input" type="checkbox" value="" id="form1Example3" />
-								<label class="form-check-label" for="form1Example3">
-									Lembre de mim
-								</label>
+							<div class="form-floating mb-3">
+								<input type="password" class="form-control" id="passwordInput" placeholder="Password" name="password" required>
+								<label for="passwordInput">Senha</label>
 							</div>
 
 							<button class="btn btn-primary btn-lg btn-block" type="submit">
