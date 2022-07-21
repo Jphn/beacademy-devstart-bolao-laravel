@@ -11,8 +11,8 @@
 		</p>
 		<div class="collapse" id="sweepstakeCollapse">
 			<div class="card card-body">
-				<p><strong>Concurso Nº:</strong> {{ $sweepstake->id }}.</p>
-				<p><strong>Dezenas:</strong> {{ $sweepstake->string_dozens }}.</p>
+				<p><strong>Concurso Nº:</strong> {{ $sweepstake->id ?? '0000' }}.</p>
+				<p><strong>Dezenas:</strong> {{ $sweepstake->string_dozens ?? 'Nenhuma' }}.</p>
 			</div>
 		</div>
 

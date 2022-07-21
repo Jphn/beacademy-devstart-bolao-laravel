@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\User;
 use App\Models\Participant;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+	public function __construct(private Participant $participant)
+	{
+	}
+
 	public function getLoginPage()
 	{
 		return view('admin.login');
@@ -26,7 +29,7 @@ class AdminController extends Controller
 
 	public function getDashboardPage()
 	{
-		$participants = Participant::all();
+		$participants = $this->participant->orderBy('id')->get();
 
 		return view('admin.dashboard', compact('participants'));
 	}
@@ -40,7 +43,7 @@ class AdminController extends Controller
 
 	public function getParticipantEditPage($id)
 	{
-		if ($participant = Participant::find($id))
+		if ($participant = $this->participant->find($id))
 			return view('participant.edit', compact('participant'));
 
 		return redirect()->route('admin.dashboard');
