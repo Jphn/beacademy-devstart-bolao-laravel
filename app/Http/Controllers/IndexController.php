@@ -17,7 +17,7 @@ class IndexController extends Controller
 	{
 		$participants = $this->participant->orderByDesc('points')->where('active', true)->get();
 
-		$sweepstake = $this->sweepstake->first();
+		$sweepstake = $this->sweepstake->orderBy('id', 'DESC')->first();
 
 		return view('table', compact('participants', 'sweepstake'));
 	}
