@@ -15,49 +15,51 @@
 
 <body>
 	<main class="container">
-		<section class="sweepstake">
-			<div class="w-header">
-				<h2>Último Concurso</h2>
-			</div>
+		@if ($sweepstake ?? false)
+			<section class="sweepstake">
+				<div class="w-header">
+					<h2>Último Concurso</h2>
+				</div>
 
-			<div class="w-numbers">
-				@foreach ($sweepstake->dozens as $dozen)
-					<div class="number">{{ $dozen }}</div>
-				@endforeach
-			</div>
+				<div class="w-numbers">
+					@foreach ($sweepstake->dozens as $dozen)
+						<div class="number">{{ $dozen }}</div>
+					@endforeach
+				</div>
 
-			<div class="w-infos">
-				<p>
-					Os valores são atualizados pelo administrador do
-					sistema, com base nos resultados oficiais da Mega-Sena. Contate-o caso haja algum erro na atualização dos dados.
-				</p>
-			</div>
+				<div class="w-infos">
+					<p>
+						Os valores são atualizados pelo administrador do
+						sistema, com base nos resultados oficiais da Mega-Sena. Contate-o caso haja algum erro na atualização dos dados.
+					</p>
+				</div>
 
-			@if ($pastSweepstakes ?? false)
-				<div class="w-past">
-					<div class="w-header">
-						<h3>Concursos Anteriores</h3>
-					</div>
+				@if ($pastSweepstakes ?? false)
+					<div class="w-past">
+						<div class="w-header">
+							<h3>Concursos Anteriores</h3>
+						</div>
 
-					<div class="w-content">
-						<div class="past">
-							<div class="w-header">
-								<h4>Nº 0000</h4>
-							</div>
+						<div class="w-content">
+							<div class="past">
+								<div class="w-header">
+									<h4>Nº 0000</h4>
+								</div>
 
-							<div class="w-numbers">
-								<div class="number">00</div>
-								<div class="number">00</div>
-								<div class="number">00</div>
-								<div class="number">00</div>
-								<div class="number">00</div>
-								<div class="number">00</div>
+								<div class="w-numbers">
+									<div class="number">00</div>
+									<div class="number">00</div>
+									<div class="number">00</div>
+									<div class="number">00</div>
+									<div class="number">00</div>
+									<div class="number">00</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			@endif
-		</section>
+				@endif
+			</section>
+		@endif
 
 		<hr />
 
