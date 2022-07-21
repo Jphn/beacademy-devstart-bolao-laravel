@@ -128,6 +128,10 @@
 							<input type="text" class="form-control" id="phone" name="phone" minlength="11"
 							       maxlength="11" required>
 						</div>
+						<div class="mb-3 form-check form-switch">
+							<label class="form-check-label" for="active">Status</label>
+							<input class="form-check-input" type="checkbox" role="switch" id="active" name="active">
+						</div>
 						<div class="mb-3">
 							<label for="password" class="form-label">Senha</label>
 							<input type="password" class="form-control" id="password" name="password" minlength="6"

@@ -40,6 +40,8 @@ class ParticipantController extends Controller
 	public function postParticipant(ParticipantsRequest $req)
 	{
 		$data = $req->only('name', 'phone');
+
+		$data['active'] = (bool)$req->active ?? false;
 		$data['password'] = bcrypt($req->password);
 		$data['dozens'] = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -80,7 +82,7 @@ class ParticipantController extends Controller
 		if (count(array_unique($dozens)) == 10)
 			$participant = $this->model->find($id);
 
-		if ($participant && password_verify($req->password, $participant->password))
+		if (isset($participant) && password_verify($req->password, $participant->password))
 			$participant->update([
 				'dozens' => $dozens
 			]);
