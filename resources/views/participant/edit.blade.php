@@ -24,8 +24,8 @@
 			</div>
 			<div class="mb-3">
 				<label for="points" class="form-label">Pontos</label>
-				<input value="{{ $participant->points }}" type="number" class="form-control" id="points" name="points"
-					required readonly disabled>
+				<input value="{{ $participant->points }}" type="number" class="form-control" id="points" name="points" required
+					readonly disabled>
 			</div>
 			<div class="mb-3">
 				<label for="update_number" class="form-label">Concurso</label>
@@ -48,7 +48,10 @@
 					maxlength="12" minlength="6">
 			</div>
 
-			<a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">Voltar</a>
+			<a href="{{ route('admin.dashboard') }}" class="btn btn-outline-secondary">
+				<i class="fa-solid fa-arrow-left fa-lg"></i>
+				Voltar
+			</a>
 			<button type="submit" class="btn btn-primary">Salvar</button>
 		</form>
 	</section>
