@@ -4,6 +4,19 @@
 	<div class="container">
 		<section class="mt-3">
 			<h1>Bem-vindo {{ Auth::user()->name }}!</h1>
+
+			<div>
+				<a href="{{ route('admin.list') }}" class="btn btn-info">
+					Administradores
+					&ensp;
+					<i class="fa-solid fa-lock"></i>
+				</a>
+				<a class="btn btn-secondary" href="{{ route('admin.logout') }}">
+					Sair
+					&ensp;
+					<i class="fa-solid fa-arrow-right-from-bracket"></i>
+				</a>
+			</div>
 		</section>
 
 		<hr />
@@ -23,18 +36,6 @@
 				&ensp;
 				<i class="fa-solid fa-power-off"></i>
 			</button>
-
-			<button type="button" class="btn btn-info disabled">
-				Administradores
-				&ensp;
-				<i class="fa-solid fa-lock"></i>
-			</button>
-
-			<a class="btn btn-secondary" href="{{ route('admin.logout') }}">
-				Sair
-				&ensp;
-				<i class="fa-solid fa-arrow-right-from-bracket"></i>
-			</a>
 		</section>
 
 		<hr />

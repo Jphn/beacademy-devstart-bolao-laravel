@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class AdminController extends Controller
 {
-	public function __construct(private Participant $participant)
+	public function __construct(private Participant $participant, private User $user)
 	{
 	}
 
@@ -47,5 +48,20 @@ class AdminController extends Controller
 			return view('participant.edit', compact('participant'));
 
 		return redirect()->route('admin.dashboard');
+	}
+
+	public function getAdminDashboardPage()
+	{
+		$users = $this->user->all();
+
+		return view('admin.list', compact('users'));
+	}
+
+
+	public function getUserEditPage($id)
+	{
+		$user = $this->user->findOrFail($id);
+
+		return view('admin.edit', compact('user'));
 	}
 }
