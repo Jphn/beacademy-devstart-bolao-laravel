@@ -28,11 +28,13 @@ class AdminController extends Controller
 		return redirect()->back(303);
 	}
 
-	public function getDashboardPage()
+	public function getDashboardPage(Request $req)
 	{
-		$participants = $this->participant->orderBy('id')->get();
+		$search = $req->search ?? null;
 
-		return view('admin.dashboard', compact('participants'));
+		$participants = $this->participant->getParticipants($search);
+
+		return view('admin.dashboard', compact('participants', 'search'));
 	}
 
 	public function getLogoutUser()

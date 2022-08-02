@@ -34,6 +34,19 @@ class Participant extends Model
 		'string_dozens'
 	];
 
+	public function getParticipants(string $search = null)
+	{
+		$participants = $this->orderBy('id')->where(function ($query) use ($search) {
+			if ($search) {
+				$query->where('name', 'LIKE', "%{$search}%");
+				$query->orWhere('phone', 'LIKE', "%{$search}%");
+			}
+		})->get();
+
+		return $participants;
+	}
+
+
 	public function updateParticipantsPoints(int $number, array $dozens)
 	{
 		$activeParticipants = $this->getAllParticipantsToUpdate($number);

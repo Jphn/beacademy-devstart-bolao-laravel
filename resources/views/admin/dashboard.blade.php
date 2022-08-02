@@ -55,8 +55,19 @@
 				<i class="fa-solid fa-file-csv"></i>
 			</a>
 
-			<div class="table-responsive">
-				<table class="table table-light table-striped table-hover mt-3">
+			<form class="mt-4" method="GET">
+				<div class="input-group mb-3">
+					<input type="text" class="form-control" placeholder="Pesquisar..." aria-label="Pesquisar..."
+						aria-describedby="searchAddon" name="search" value="{{ $search }}">
+					<button class="btn btn-outline-success" type="submit" id="searchAddon">
+						Pesquisar
+						<i class="fa-solid fa-magnifying-glass"></i>
+					</button>
+				</div>
+			</form>
+
+			<div class="table-responsive mt-1">
+				<table class="table table-light table-striped table-hover">
 					<thead>
 						<tr>
 							<th scope="col">#</th>
