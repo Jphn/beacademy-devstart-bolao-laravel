@@ -49,7 +49,7 @@
 				<i class="fa-solid fa-plus"></i>
 			</button>
 
-			<a href="{{ route('participants.csv') }}" class="btn btn-info">
+			<a href="{{ route('participants.csv') }}" class="btn btn-info disabled">
 				Gerar planilha
 				&ensp;
 				<i class="fa-solid fa-file-csv"></i>
