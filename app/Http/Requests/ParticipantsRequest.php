@@ -26,6 +26,7 @@ class ParticipantsRequest extends FormRequest
         $rules = [
             'name' => 'required|string|min:3',
             'phone' => 'required|string|min:11|max:11',
+            'active' => 'nullable',
             'password' => [
                 'required',
                 'min:6',

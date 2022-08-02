@@ -31,8 +31,9 @@ class ParticipantFactory extends Factory
     {
         $dozens = [];
 
-        for ($i = 1; $i <= 10; $i++) {
+        while (count($dozens) < 10) {
             array_push($dozens, $this->faker->numberBetween(1, 60));
+            $dozens = array_unique($dozens);
         }
 
         return $dozens;

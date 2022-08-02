@@ -63,30 +63,30 @@ class ParticipantController extends Controller
 
 	public function putParticipant(ParticipantsRequest $req, $id)
 	{
+		$participant = $this->model->findOrFail($id);
+
 		$data = $req->only('name', 'phone');
 		$data['active'] = (bool)$req->active ?? false;
 
 		if ($req->password)
 			$data['password'] = bcrypt($req->password);
 
-		if ($participant = $this->model->find($id))
-			$participant->update($data);
+		$participant->update($data);
 
 		return redirect()->route('admin.dashboard');
 	}
 
 	public function putParticipantDozens(Request $req, $id)
 	{
-		$dozens = json_decode($req->dozens);
+		$participant = $this->model->find($id);
+
+		$dozens = array_unique(json_decode($req->dozens));
 
 		$dozens = array_filter($dozens, function ($value) {
 			return 1 <= $value && $value <= 60;
 		});
 
-		if (count(array_unique($dozens)) == 10)
-			$participant = $this->model->find($id);
-
-		if (isset($participant) && password_verify($req->password, $participant->password))
+		if (count($dozens) == 10 && password_verify($req->password, $participant->password))
 			$participant->update([
 				'dozens' => $dozens
 			]);
