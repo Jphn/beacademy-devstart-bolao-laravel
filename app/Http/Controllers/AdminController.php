@@ -23,9 +23,9 @@ class AdminController extends Controller
 		$credentials = $req->only('email', 'password');
 
 		if (Auth::attempt($credentials))
-			return redirect()->intended('/dashboard');
+			return redirect()->intended(route('admin.dashboard'), 302);
 
-		return redirect()->back();
+		return redirect()->back(303);
 	}
 
 	public function getDashboardPage()
