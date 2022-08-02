@@ -79,6 +79,10 @@ class ParticipantController extends Controller
 	{
 		$dozens = json_decode($req->dozens);
 
+		$dozens = array_filter($dozens, function ($value) {
+			return 1 <= $value && $value <= 60;
+		});
+
 		if (count(array_unique($dozens)) == 10)
 			$participant = $this->model->find($id);
 
