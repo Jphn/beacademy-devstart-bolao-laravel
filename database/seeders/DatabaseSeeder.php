@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@email.com'
         ]);
 
-        \App\Models\User::factory(4)->create();
+        // \App\Models\User::factory(4)->create();
 
         \App\Models\Participant::factory(50)->create();
 
