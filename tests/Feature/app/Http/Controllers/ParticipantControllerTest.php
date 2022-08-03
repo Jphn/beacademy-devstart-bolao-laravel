@@ -202,8 +202,51 @@ class ParticipantControllerTest extends TestCase
         $response = $this->put(route('participants.update.dozens', $participant->id), $payload);
 
         // ASSERT
+        $participant = Participant::find($participant->id);
+
         $response->assertRedirect(url()->previous());
         $this->assertDatabaseCount(Participant::class , 1);
+        $this->assertEquals(json_decode($payload['dozens']), $participant->dozens);
+    }
+
+    public function testParticipantCanNotSelectDozensUsingWrongPassword()
+    {
+        // PREPARE
+        $participant = Participant::factory()->create(['dozens' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'password' => bcrypt('password')]);
+        $payload = [
+            'dozens' => '[1, 12, 23, 34, 45, 56, 47, 38, 29, 20]',
+            'password' => 'wrongPassword'
+        ];
+
+        // ACT
+        $response = $this->put(route('participants.update.dozens', $participant->id), $payload);
+
+        // ASSERT
+        $participant = Participant::find($participant->id);
+
+        $response->assertRedirect(url()->previous());
+        $this->assertDatabaseCount(Participant::class , 1);
+        $this->assertNotEquals(json_decode($payload['dozens']), $participant->dozens);
+    }
+
+    public function testParticipantCanNotSelectANumberThatIsOutOfRange()
+    {
+        // PREPARE
+        $participant = Participant::factory()->create(['dozens' => [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], 'password' => bcrypt('password')]);
+        $payload = [
+            'dozens' => '[61, 12, 23, 34, 45, 56, 47, 38, 29, 0]',
+            'password' => 'password'
+        ];
+
+        // ACT
+        $response = $this->put(route('participants.update.dozens', $participant->id), $payload);
+
+        // ASSERT
+        $participant = Participant::find($participant->id);
+
+        $response->assertRedirect(url()->previous());
+        $this->assertDatabaseCount(Participant::class , 1);
+        $this->assertNotEquals(json_decode($payload['dozens']), $participant->dozens);
     }
 
     public function testNotAuthenticatedUserCanNotDeleteParticipant()
