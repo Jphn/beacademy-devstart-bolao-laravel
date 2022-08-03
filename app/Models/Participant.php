@@ -52,9 +52,9 @@ class Participant extends Model
 		$activeParticipants = $this->getAllParticipantsToUpdate($number);
 
 		foreach ($activeParticipants as $participant) {
-			$diff = array_intersect($participant->dozens, $dozens);
+			$equalities = array_intersect($participant->dozens, $dozens);
 
-			$points = $participant->points + count($diff);
+			$points = $participant->points + count($equalities);
 
 			$participant->update([
 				'points' => $points > 10 ? 10 : $points,
