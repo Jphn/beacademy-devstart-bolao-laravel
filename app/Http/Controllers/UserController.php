@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UserControllerRequest;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -38,7 +39,8 @@ class UserController extends Controller
     {
         $user = $this->user->findOrFail($id);
 
-        $user->delete();
+        if (Auth::user()->id != $id)
+            $user->delete();
 
         return redirect()->back();
     }
