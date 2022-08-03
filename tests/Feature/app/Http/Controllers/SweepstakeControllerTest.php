@@ -43,4 +43,30 @@ class SweepstakeControllerTest extends TestCase
             'id' => $result['concurso'],
         ]);
     }
+
+    public function testNotAuthenticatedUserCanNotAutoUpdateAllParticipantsPoints()
+    {
+        // PREPARE
+        $result = Http::withoutVerifying()->get('https://loteriascaixa-api.herokuapp.com/api/mega-sena/latest')->json();
+        $participant = Participant::factory()->create();
+
+        // ACT
+        $response = $this->put(route('sweepstakes.update'));
+
+        // ASSERT
+        $response->assertRedirect(route('login'));
+
+        $this->assertDatabaseCount(Participant::class , 1);
+        $this->assertDatabaseMissing(Participant::class , [
+            'update_number' => $result['concurso']
+        ]);
+        $this->assertDatabaseHas(Participant::class , [
+            'update_number' => $participant->update_number
+        ]);
+
+        $this->assertDatabaseCount(Sweepstake::class , 0);
+        $this->assertDatabaseMissing(Sweepstake::class , [
+            'id' => $result['concurso'],
+        ]);
+    }
 }
