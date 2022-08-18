@@ -68,7 +68,7 @@
 				<h2>Tabela de Pontuações</h2>
 				<p>
 					Tabela completa com a pontuação de todos os
-					participantes ativosdeste bolão.
+					participantes ativos deste bolão.
 				</p>
 				<p>
 					Caso não encontre seu nome, utilize a ferramenta de
