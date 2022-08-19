@@ -84,7 +84,7 @@
 					<tbody>
 						@foreach ($participants as $participant)
 							@php
-								$selectDozensPhrase = 'Ol%C3%A1+' . str_replace(' ', '+', $participant->name) . '%2C+aqui+est%C3%A1+o+seu+link+para+selecionar+suas+dezenas.+Link%3A+https%3A%2F%2Fseudominio.com%2Fvolante%2F1' . $participant->id;
+								$selectDozensPhrase = 'Ol%C3%A1+' . str_replace(' ', '+', $participant->name) . '%2C+aqui+est%C3%A1+o+seu+link+para+selecionar+suas+dezenas.+Link%3A+https%3A%2F%2Fseudominio.com%2Fvolante%2F' . $participant->id;
 								$checkInfosPhrase = "Sua+pontua%C3%A7%C3%A3o+agora+%C3%A9+{$participant->points}%2C+entre+no+site+para+conferir+os+%C3%BAltimos+resultados.+Link%3A+https%3A%2F%2Fseudominio";
 							@endphp
 							<tr>
